@@ -10,10 +10,10 @@ This repository is collection of terraform modules to support creating `SQLServe
 * Should allow creation of multiple disks and disk attachments to VM
 * Desk encryption should be supported (and optonal)
 * Should support multiple VM configurations in one call
-![What to build](images/azure-vm-layout.png)
+![What to build](images/azure-vm-layout.PNG)
 
 Below is how I have build this, the island is one group of resources which is created. Rest are created in separate caller module. This is like creating a landing zone and then VM.
 
 So effectivly I am making `terraform apply` call twice.  
 
-![How to build](images/azure-vm-how.png)
+![How to build](images/azure-vm-how.PNG)
