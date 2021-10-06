@@ -1,0 +1,101 @@
+rgname    = "terraformrg"
+vnet_name = "terraformvnet"
+tags = {
+  "department" = "Finance"
+}
+vm_list = {
+  "vm-1" = {
+    vmsize             = "Standard_DS1_v2"
+    os_disk_type       = "Standard_LRS"
+    os_image_publisher = "MicrosoftSQLServer" #"Canonical"
+    os_image_offer     = "SQL2017-WS2016"     # "UbuntuServer"
+    os_image_sku       = "SQLDEV"             #"16.04-LTS"
+    os_image_version   = "latest"
+    admin_username     = "superuser"
+    admin_password     = "AdminP4ssword!"
+    // Encryption details
+    key_vault_name = "dev-key-vault-ci"
+    kek_name = "kek"
+    dek_name = "dek"
+    des_name = "dev-key-vault-des"
+    // Storage details
+    storage_disks = [
+      {
+        disk_name    = "Disk-1"
+        disk_size_gb = 100
+      },
+      {
+        disk_name    = "Disk-2"
+        disk_size_gb = 100
+      },
+      {
+        disk_name    = "Disk-3"
+        disk_size_gb = 50
+      },
+      {
+        disk_name    = "Disk-4"
+        disk_size_gb = 50
+      }
+    ]
+    // Network details
+    network_interfaces = {
+      interface-1 = {
+        enable_ip_forwarding = true
+        ipconfigs = [
+          {
+            subnet_name      = "subnet-1"
+            private_ip       = "10.1.1.6"
+            attach_public_ip = true
+            primary          = true
+            pip_props = {
+              allocation_method = "Static"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "vm-2" = {
+    vmsize             = "Standard_DS1_v2"
+    os_disk_type       = "Standard_LRS"
+    os_image_publisher = "MicrosoftSQLServer" #"Canonical"
+    os_image_offer     = "SQL2017-WS2016"     # "UbuntuServer"
+    os_image_sku       = "SQLDEV"             #"16.04-LTS"
+    os_image_version   = "latest"
+    admin_username     = "superuser"
+    admin_password     = "AdminP4ssword!"
+    // Encryption details
+    key_vault_name = "dev-key-vault-ci"
+    kek_name = "kek"
+    dek_name = "dek"
+    des_name = "dev-key-vault-des"
+    // Storage details
+    storage_disks = [
+      {
+        disk_name    = "Disk-1"
+        disk_size_gb = 100
+      },
+      {
+        disk_name    = "Disk-2"
+        disk_size_gb = 100
+      }
+    ]
+    // Network details
+    network_interfaces = {
+      interface-1 = {
+        enable_ip_forwarding = true
+        ipconfigs = [
+          {
+            subnet_name      = "subnet-1"
+            private_ip       = "10.1.1.9"
+            attach_public_ip = true
+            primary          = true
+            pip_props = {
+              allocation_method = "Static"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

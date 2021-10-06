@@ -1,0 +1,39 @@
+rgname="terraformrg"
+vnet_name = "terraformvnet"
+key_vault_name = "dev-key-vault-ci"
+kek_name = "kek"
+dek_name = "dek"
+des_name = "dev-key-vault-des"
+
+tags = {
+    "department" = "Finance"
+    }
+vnet_address_space = ["10.1.0.0/16","10.2.0.0/16"]   
+
+subnet_props = {
+    "subnet-1" = {
+        name = "subnet-1"
+        address_prefixes = ["10.1.1.0/24"]
+        service_endpoints = ["Microsoft.Sql","Microsoft.Storage"]
+        }
+    "subnet-2" = {
+        name = "subnet-2"
+        address_prefixes = ["10.2.1.0/24"]
+        service_endpoints = ["Microsoft.Sql","Microsoft.Storage"]
+        }    
+}
+
+vm_list = {
+   "vm-1" =  {
+        name = "test"
+        subnet_name = "subnet-1"
+    }
+}
+
+nsg_name = "sql_server_nsg"
+rule_list = {
+    sql_server_and_rdp_access = {
+        description = "open port for rdp and sqlserver"
+        destination_port_ranges = ["22", "3389","1433"]
+    }
+}
