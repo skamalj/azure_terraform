@@ -1,10 +1,25 @@
-# Usage
+<!-- BEGIN_TF_DOCS -->
+## Requirements
 
-<!--- BEGIN_TF_DOCS --->
-stacks/Readme.md updated successfully
-stacks/base/Readme.md updated successfully
-stacks/mssqldb/Readme.md updated successfully
-stacks/sql_on_azure_vm/Readme.md updated successfully
+No requirements.
 
-<!--- END_TF_DOCS --->
+## Providers
 
+No providers.
+
+## Modules
+
+No modules.
+
+## Resources
+
+No resources.
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
