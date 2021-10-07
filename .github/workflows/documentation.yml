@@ -10,7 +10,3 @@ jobs:
       uses: terraform-docs/gh-actions@v0.11.0
       with:
         find-dir: ./modules
-        config-file: .terraform-docs.yaml
-        output-file: Readme.md
-        output-method: replace
-        git-push: "true"
