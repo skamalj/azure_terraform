@@ -1,0 +1,7 @@
+formatter: "markdown table"
+recursive:
+  enabled: true
+  path: .
+output:
+  file: Readme.md
+  mode: replace  
