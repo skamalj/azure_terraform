@@ -1,4 +1,11 @@
 terraform {
+  backend "azurerm" {
+    resource_group_name  = "myrg"
+    // This is provided using terraform init -backend-config="key=value"
+    //storage_account_name = "someaccount"
+    container_name       = "tfstate"
+    key                  = "test.azuresql.base"
+  }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm",

@@ -24,34 +24,12 @@ module "vms" {
   nsg_name = "sql_server_nsg"
 }
 
-#resource "azurerm_mssql_virtual_machine" "mssql" {
-#  virtual_machine_id               = module.vms.vms["vm-1"].id
-#  sql_license_type                 = "PAYG"
-#  r_services_enabled               = true
-#  sql_connectivity_port            = 1433
-#  sql_connectivity_type            = "PRIVATE"
-#  sql_connectivity_update_password = "Password1234!"
-#  sql_connectivity_update_username = "sqllogin"
-#  
-#  storage_configuration {
-#    disk_type = "NEW"
-#    storage_workload_type = "OLTP"
-#    data_settings {
-#      luns = [10,11]
-#      default_file_path = "F:\\data" 
-#    }
-#    log_settings {
-#      luns = [12]
-#      default_file_path = "G:\\logs"
-#   }
-#   temp_db_settings {
-#     luns = [13]
-#     default_file_path = "H:\\temp_db"
-#   }
-#  }
-#  auto_patching {
-#    day_of_week                            = "Sunday"
-#    maintenance_window_duration_in_minutes = 60
-#    maintenance_window_starting_hour       = 2
-#  }
-#}
+module "mssql_on_vm" {
+  source = "../../modules/mssql_on_vm"
+
+  virtual_machine_id = module.vms.vms["vm-1"].id
+  sql_connectivity_update_password = var.sql_connectivity_update_password
+  data_luns = var.data_luns
+  log_luns = var.log_luns
+  temp_luns = var.temp_luns
+}

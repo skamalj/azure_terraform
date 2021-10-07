@@ -14,5 +14,5 @@ resource "azurerm_subnet" "subnets" {
   virtual_network_name = var.virtual_network_name
   resource_group_name = var.resource_group_name
   address_prefixes = each.value.address_prefixes
-  service_endpoints = try(each.value.service_endpoints, null)
+  service_endpoints = lookup(each.value,"service_endpoints", null)
 }

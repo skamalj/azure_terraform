@@ -44,6 +44,10 @@ variable "log_monitoring_enabled" {
   type = bool
   default = true
 }
+
+variable "connection_policy" {
+  default = "Default" 
+}
 variable "tags" {
   type = map
   default = {}

@@ -44,3 +44,6 @@ variable "tags" {
   type = map
   default = {}
 }
+
+variable "db_name" {
+}

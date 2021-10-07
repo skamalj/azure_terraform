@@ -39,3 +39,11 @@ module "mssql_server" {
   sp_display_name = var.sp_display_name
   user_principal_name = var.user_principal_name
 }
+
+module "mssql_db" {
+  source = "../../modules/mssql_db"
+
+  db_name = var.db_name
+  server_id = module.mssql_server.mssql_server.id
+  zone_redundant = true
+}

@@ -10,5 +10,5 @@ terraform {
 resource "azurerm_resource_group" "rg" {
   name     =  var.name
   location =  var.location
-  tags = try(var.tags, null) # Use if provided else ignore
+  tags = var.tags
 }

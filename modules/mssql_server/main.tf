@@ -42,6 +42,7 @@ resource "azurerm_mssql_server" "mssql_server" {
   administrator_login          = var.administrator_login
   administrator_login_password = var.administrator_password
   minimum_tls_version          = var.minimum_tls_version
+  connection_policy            = var.connection_policy
 
   dynamic "azuread_administrator" {
     for_each = try(data.azuread_service_principal.service_principal[0].object_id, 
