@@ -8,6 +8,7 @@ variable "des_name" {
 
 variable "kek_name" {
   type = string
+  description = "Key encryption key for which DES will be created"
 }
 variable "location" {
   type = string
