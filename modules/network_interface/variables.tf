@@ -39,6 +39,7 @@ network_interfaces = {
 */
 variable "interface_list" {
   type = map(any)
+  description = "Details for this filed are in variables.tf"
 }
 
 variable "rg_name" {}
