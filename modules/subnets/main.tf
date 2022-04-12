@@ -15,4 +15,13 @@ resource "azurerm_subnet" "subnets" {
   resource_group_name = var.resource_group_name
   address_prefixes = each.value.address_prefixes
   service_endpoints = lookup(each.value,"service_endpoints", null)
+  dynamic "delegation" {
+    for_each = try(each.value.delegate, null) == null ? [] : [1]
+    content {
+      name = each.value.delegate
+      service_delegation {
+        name = each.value.delegate
+      }
+    }
+  }
 }
