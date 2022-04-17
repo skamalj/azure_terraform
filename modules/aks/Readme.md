@@ -14,9 +14,13 @@ Error: creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource 
 
 Error: creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="SubscriptionNotEnabledEncryptionAtHost" Message="Subscription does not enable EncryptionAtHost."
 
-Error: waiting for creation of Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): Code="CreateVMSSAgentPoolFailed" Message="Code=\"AllocationFailed\" Message=\"Allocation failed. We do not have sufficient capacity for the requested VM size in this region. Read more about improving likelihood of allocation success at http://aka.ms/allocation-guidance\""
-
 Error: updating Subnet: (Name "pod-subnet" / Virtual Network Name "terraformvnet" / Resource Group "aksrg"): network.SubnetsClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="SubnetMissingRequiredDelegation" Message="Subnet /subscriptions/3f735773-a15a-41bf-bcb9-0217a1a1b07d/resourceGroups/aksrg/providers/Microsoft.Network/virtualNetworks/terraformvnet/subnets/pod-subnet requires any of the following delegation(s) [Microsoft.ContainerService/managedClusters] to reference service association link /subscriptions/3f735773-a15a-41bf-bcb9-0217a1a1b07d/resourceGroups/aksrg/providers/Microsoft.Network/virtualNetworks/terraformvnet/subnets/pod-subnet/serviceAssociationLinks/AzureKubernetesService." Details=[]
 
-Below is for "UserdefinedRoutes"
-Error: creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="ExistingRouteTableNotAssociatedWithSubnet" Message="An existing route table has not been associated with subnet /subscriptions/3f735773-a15a-41bf-bcb9-0217a1a1b07d/resourceGroups/aksrg/providers/Microsoft.Network/virtualNetworks/terraformvnet/subnets/node-subnet. Please update the route table association"
+Error: creating Node Pool: (Agent Pool Name "poolwn" / Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.AgentPoolsClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="InvalidParameter" Message="Windows agentpools don't support pod subnet."
+
+Error syncing load balancer: failed to ensure load balancer: Retriable: false, RetryAfter: 0s, HTTPStatusCode: 403, RawError: {"error":{"code":"AuthorizationFailed","message":"The client '2dd00438-f39e-4b32-9033-1b671818e41c' with object id '2dd00438-f39e-4b32-9033-1b671818e41c' does not have authorization to perform action 'Microsoft.Network/virtualNetworks/subnets/read' over scope '/subscriptions/3f735773-a15a-41bf-bcb9-0217a1a1b07d/resourceGroups/aksrg/providers/Microsoft.Network/virtualNetworks/terraformvnet/subnets/aks-node-subnet' or the scope is invalid. If access was recently granted, please refresh your credentials."}}
+        Restart CNS Pods, if role assignment has been completed (in kube-system)
+
+
+Warning  Unhealthy  5m28s                  kubelet            Liveness probe failed: F0415 13:23:13.484545      11 main.go:159] Kubelet plugin registration hasn't succeeded yet, file=/var/lib/kubelet/plugins/csi-secrets-store/registration doesn't exist.
+        Delete the crashloopback pod, it will be recreated OK

@@ -5,17 +5,17 @@ variable "resource_group_name" {
 variable "node_pool_resource_group_name" {
 }
 variable "pod_subnet_id" {
+  default = null
 }
 variable "node_subnet_id" {
 }
-variable "automatic_channel_upgrade" {
-    default = "stable"
-}
 variable "api_server_authorized_ip_ranges" {
-    default = ["171.79.37.62/32", "10.11.0.0/16"]
+    default = ["Your commma separated IP ranges"]
 }
 variable "aks_admin_group_object_ids" {
-    default = ["your-group-object-id"]
+}
+variable "automatic_channel_upgrade" {
+    default = "stable"
 }
 variable "azure_policy_enabled" {
   default = true
@@ -40,6 +40,9 @@ variable "maintenance_window_hours" {
 }
 variable "service_cidr" {
   default = "172.16.0.0/16"
+}
+variable "docker_bridge_cidr" {
+  default = "172.17.0.1/16"
 }
 variable "open_service_mesh_enabled" {
   default = false
@@ -70,7 +73,7 @@ variable "min_count" {
     default = 1  
 }
 variable "node_count" {
-    default = 2
+    default = 1
 }
 variable "fips_enabled" {
     default = false
@@ -79,7 +82,7 @@ variable "enable_node_public_ip" {
     default = false
 }
 variable "node_labels" {
-    default = null
+    default = {type= "default"}
 }
 variable "pool_max_surge_for_upgrade" {
   default = "1"
@@ -107,4 +110,31 @@ variable "outbound_type" {
 }
 variable "log_analytics_workspace_id" {
     default = null
+}
+variable "aci_subnet_name" {
+  default = null
+}
+variable "private_cluster_public_fqdn_enabled" {
+  default = true
+}
+variable "enable_host_encryption" {
+  default = false
+}
+variable "zones" {
+  default = [1,2]
+}
+variable "create_ingress_application_gateway" {
+  default = true
+}
+variable "ingress_application_gateway_name" {
+  default = null
+}
+variable "ingress_application_gateway_id" {
+  default = null
+}
+variable "ingress_application_gateway_subnet_id" {
+  default = null
+}
+variable "pod_cidr" {
+  default = null 
 }

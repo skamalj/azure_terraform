@@ -21,7 +21,11 @@ resource "azurerm_subnet" "subnets" {
       name = each.value.delegate
       service_delegation {
         name = each.value.delegate
+        actions = each.value.actions == [] ? null : each.value.actions
       }
     }
+  }
+  lifecycle {
+    ignore_changes = [enforce_private_link_endpoint_network_policies, delegation]
   }
 }
