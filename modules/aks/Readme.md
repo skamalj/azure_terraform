@@ -1,26 +1,85 @@
-creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="InvalidParameter" Message="Private cluster cannot be enabled with AuthorizedIPRanges."
+<!-- BEGIN_TF_DOCS -->
+## Requirements
 
-creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="InvalidParameter" Message="Outbound type is managedNATGateway but agent pool 'defaultpool' is using custom VNet, which is not allowed." Target="properties.vnetSubnetID"
+| Name | Version |
+|------|---------|
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.78.0 |
 
-creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="NodeResourceGroupSameAsResourceGroup" Message="Node resource group 'aksrg' is the same as ResourceGroup 'aksrg', which is not allowed, please provide a different node resource group."
+## Providers
 
-creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="OIDCIssuerFeatureFlagNotEnabled" Message="Enabling OIDC issuer is not allowed since feature 'Microsoft.ContainerService/EnableOIDCIssuerPreview' is not enabled. Please see https://aka.ms/aks/previews for how to enable features."
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 2.78.0 |
 
-Error: creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="InvalidParameter" Message="The value of parameter apiServerAuthorizedIPRanges is invalid. Error details: Setting apiServerAuthorizedIPRanges [171.79.37.62/32] is not allowed with publicNetworkAccess disabled. Refer to https://aka.ms/aks/auth-ip-ranges for more details. Please see https://aka.ms/aks-naming-rules for more details." Target="apiServerAuthorizedIPRanges"
+## Modules
 
-Error: creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="NodeResourceGroupAlreadyExists" Message="Node resource group 'akspoolrg' under subscription '3f735773-a15a-41bf-bcb9-0217a1a1b07d' already exists, please provide a new one."
+No modules.
 
-Error: creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="VMSizeDoesNotSupportEncryptionAtHost" Message="The Virtual Machine size Standard_D2_v2 does not support EncryptionAtHost.
+## Resources
 
-Error: creating Cluster: (Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="SubscriptionNotEnabledEncryptionAtHost" Message="Subscription does not enable EncryptionAtHost."
+| Name | Type |
+|------|------|
+| [azurerm_kubernetes_cluster.aks](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) | resource |
+| [azurerm_resource_group.resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 
-Error: updating Subnet: (Name "pod-subnet" / Virtual Network Name "terraformvnet" / Resource Group "aksrg"): network.SubnetsClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="SubnetMissingRequiredDelegation" Message="Subnet /subscriptions/3f735773-a15a-41bf-bcb9-0217a1a1b07d/resourceGroups/aksrg/providers/Microsoft.Network/virtualNetworks/terraformvnet/subnets/pod-subnet requires any of the following delegation(s) [Microsoft.ContainerService/managedClusters] to reference service association link /subscriptions/3f735773-a15a-41bf-bcb9-0217a1a1b07d/resourceGroups/aksrg/providers/Microsoft.Network/virtualNetworks/terraformvnet/subnets/pod-subnet/serviceAssociationLinks/AzureKubernetesService." Details=[]
+## Inputs
 
-Error: creating Node Pool: (Agent Pool Name "poolwn" / Managed Cluster Name "aksclusterterraform" / Resource Group "aksrg"): containerservice.AgentPoolsClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="InvalidParameter" Message="Windows agentpools don't support pod subnet."
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_aci_subnet_name"></a> [aci\_subnet\_name](#input\_aci\_subnet\_name) | n/a | `any` | `null` | no |
+| <a name="input_admin_username"></a> [admin\_username](#input\_admin\_username) | n/a | `any` | `null` | no |
+| <a name="input_aks_admin_group_object_ids"></a> [aks\_admin\_group\_object\_ids](#input\_aks\_admin\_group\_object\_ids) | n/a | `any` | n/a | yes |
+| <a name="input_api_server_authorized_ip_ranges"></a> [api\_server\_authorized\_ip\_ranges](#input\_api\_server\_authorized\_ip\_ranges) | n/a | `list` | <pre>[<br>  "Your commma separated IP ranges"<br>]</pre> | no |
+| <a name="input_automatic_channel_upgrade"></a> [automatic\_channel\_upgrade](#input\_automatic\_channel\_upgrade) | n/a | `string` | `"stable"` | no |
+| <a name="input_azure_policy_enabled"></a> [azure\_policy\_enabled](#input\_azure\_policy\_enabled) | n/a | `bool` | `true` | no |
+| <a name="input_create_ingress_application_gateway"></a> [create\_ingress\_application\_gateway](#input\_create\_ingress\_application\_gateway) | n/a | `bool` | `true` | no |
+| <a name="input_default_node_pool_name"></a> [default\_node\_pool\_name](#input\_default\_node\_pool\_name) | n/a | `string` | `"defaultpool"` | no |
+| <a name="input_disk_encryption_set_id"></a> [disk\_encryption\_set\_id](#input\_disk\_encryption\_set\_id) | n/a | `any` | `null` | no |
+| <a name="input_docker_bridge_cidr"></a> [docker\_bridge\_cidr](#input\_docker\_bridge\_cidr) | n/a | `string` | `"172.17.0.1/16"` | no |
+| <a name="input_enable_host_encryption"></a> [enable\_host\_encryption](#input\_enable\_host\_encryption) | n/a | `bool` | `false` | no |
+| <a name="input_enable_node_public_ip"></a> [enable\_node\_public\_ip](#input\_enable\_node\_public\_ip) | n/a | `bool` | `false` | no |
+| <a name="input_fips_enabled"></a> [fips\_enabled](#input\_fips\_enabled) | n/a | `bool` | `false` | no |
+| <a name="input_http_application_routing_enabled"></a> [http\_application\_routing\_enabled](#input\_http\_application\_routing\_enabled) | n/a | `bool` | `true` | no |
+| <a name="input_ingress_application_gateway_id"></a> [ingress\_application\_gateway\_id](#input\_ingress\_application\_gateway\_id) | n/a | `any` | `null` | no |
+| <a name="input_ingress_application_gateway_name"></a> [ingress\_application\_gateway\_name](#input\_ingress\_application\_gateway\_name) | n/a | `any` | `null` | no |
+| <a name="input_ingress_application_gateway_subnet_id"></a> [ingress\_application\_gateway\_subnet\_id](#input\_ingress\_application\_gateway\_subnet\_id) | n/a | `any` | `null` | no |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | n/a | `string` | `"1.22.6"` | no |
+| <a name="input_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#input\_log\_analytics\_workspace\_id) | n/a | `any` | `null` | no |
+| <a name="input_maintenance_window_day"></a> [maintenance\_window\_day](#input\_maintenance\_window\_day) | n/a | `string` | `"Sunday"` | no |
+| <a name="input_maintenance_window_hours"></a> [maintenance\_window\_hours](#input\_maintenance\_window\_hours) | n/a | `list` | <pre>[<br>  "21",<br>  "23"<br>]</pre> | no |
+| <a name="input_max_count"></a> [max\_count](#input\_max\_count) | n/a | `number` | `5` | no |
+| <a name="input_max_pods"></a> [max\_pods](#input\_max\_pods) | n/a | `number` | `30` | no |
+| <a name="input_min_count"></a> [min\_count](#input\_min\_count) | n/a | `number` | `1` | no |
+| <a name="input_name"></a> [name](#input\_name) | n/a | `any` | n/a | yes |
+| <a name="input_network_plugin"></a> [network\_plugin](#input\_network\_plugin) | n/a | `string` | `"azure"` | no |
+| <a name="input_node_count"></a> [node\_count](#input\_node\_count) | n/a | `number` | `1` | no |
+| <a name="input_node_labels"></a> [node\_labels](#input\_node\_labels) | n/a | `map` | <pre>{<br>  "type": "default"<br>}</pre> | no |
+| <a name="input_node_pool_resource_group_name"></a> [node\_pool\_resource\_group\_name](#input\_node\_pool\_resource\_group\_name) | n/a | `any` | n/a | yes |
+| <a name="input_node_subnet_id"></a> [node\_subnet\_id](#input\_node\_subnet\_id) | n/a | `any` | n/a | yes |
+| <a name="input_oidc_issuer_enabled"></a> [oidc\_issuer\_enabled](#input\_oidc\_issuer\_enabled) | n/a | `bool` | `true` | no |
+| <a name="input_open_service_mesh_enabled"></a> [open\_service\_mesh\_enabled](#input\_open\_service\_mesh\_enabled) | n/a | `bool` | `false` | no |
+| <a name="input_outbound_type"></a> [outbound\_type](#input\_outbound\_type) | n/a | `string` | `"loadBalancer"` | no |
+| <a name="input_pod_cidr"></a> [pod\_cidr](#input\_pod\_cidr) | n/a | `any` | `null` | no |
+| <a name="input_pod_subnet_id"></a> [pod\_subnet\_id](#input\_pod\_subnet\_id) | n/a | `any` | `null` | no |
+| <a name="input_pool_max_surge_for_upgrade"></a> [pool\_max\_surge\_for\_upgrade](#input\_pool\_max\_surge\_for\_upgrade) | n/a | `string` | `"1"` | no |
+| <a name="input_private_cluster_enabled"></a> [private\_cluster\_enabled](#input\_private\_cluster\_enabled) | n/a | `bool` | `false` | no |
+| <a name="input_private_cluster_public_fqdn_enabled"></a> [private\_cluster\_public\_fqdn\_enabled](#input\_private\_cluster\_public\_fqdn\_enabled) | n/a | `bool` | `true` | no |
+| <a name="input_public_network_access_enabled"></a> [public\_network\_access\_enabled](#input\_public\_network\_access\_enabled) | n/a | `bool` | `true` | no |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | n/a | `any` | n/a | yes |
+| <a name="input_role_based_access_control_enabled"></a> [role\_based\_access\_control\_enabled](#input\_role\_based\_access\_control\_enabled) | n/a | `bool` | `true` | no |
+| <a name="input_secret_rotation_interval"></a> [secret\_rotation\_interval](#input\_secret\_rotation\_interval) | n/a | `string` | `"6m"` | no |
+| <a name="input_service_cidr"></a> [service\_cidr](#input\_service\_cidr) | n/a | `string` | `"172.16.0.0/16"` | no |
+| <a name="input_ssh_key_data"></a> [ssh\_key\_data](#input\_ssh\_key\_data) | n/a | `any` | `null` | no |
+| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | n/a | `string` | `"Standard_D2_v2"` | no |
+| <a name="input_win_admin_password"></a> [win\_admin\_password](#input\_win\_admin\_password) | n/a | `bool` | `false` | no |
+| <a name="input_win_admin_username"></a> [win\_admin\_username](#input\_win\_admin\_username) | n/a | `any` | `null` | no |
+| <a name="input_zones"></a> [zones](#input\_zones) | n/a | `list` | <pre>[<br>  1,<br>  2<br>]</pre> | no |
 
-Error syncing load balancer: failed to ensure load balancer: Retriable: false, RetryAfter: 0s, HTTPStatusCode: 403, RawError: {"error":{"code":"AuthorizationFailed","message":"The client '2dd00438-f39e-4b32-9033-1b671818e41c' with object id '2dd00438-f39e-4b32-9033-1b671818e41c' does not have authorization to perform action 'Microsoft.Network/virtualNetworks/subnets/read' over scope '/subscriptions/3f735773-a15a-41bf-bcb9-0217a1a1b07d/resourceGroups/aksrg/providers/Microsoft.Network/virtualNetworks/terraformvnet/subnets/aks-node-subnet' or the scope is invalid. If access was recently granted, please refresh your credentials."}}
-        Restart CNS Pods, if role assignment has been completed (in kube-system)
+## Outputs
 
-
-Warning  Unhealthy  5m28s                  kubelet            Liveness probe failed: F0415 13:23:13.484545      11 main.go:159] Kubelet plugin registration hasn't succeeded yet, file=/var/lib/kubelet/plugins/csi-secrets-store/registration doesn't exist.
-        Delete the crashloopback pod, it will be recreated OK
+| Name | Description |
+|------|-------------|
+| <a name="output_aks_principal"></a> [aks\_principal](#output\_aks\_principal) | n/a |
+| <a name="output_aksfqdn"></a> [aksfqdn](#output\_aksfqdn) | AKS Cluster ID |
+| <a name="output_aksid"></a> [aksid](#output\_aksid) | AKS Cluster ID |
+<!-- END_TF_DOCS -->
