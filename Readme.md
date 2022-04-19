@@ -23,7 +23,7 @@ So effectivly I am making `terraform apply` call twice.
 
 ![How to build](images/azure-vm-how.PNG)
 
-# AKS (In stacks foled)
+# AKS (In stacks folder)
 
 This creates AKS cluster allowing user to enable disable various available feature including networking, policy, ingress, storage, autoscale. encryption etc.
 
